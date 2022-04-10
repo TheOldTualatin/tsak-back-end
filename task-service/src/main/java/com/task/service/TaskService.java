@@ -12,4 +12,6 @@ public interface TaskService
     void save(Task task) throws Exception;
 
     List<Task> findAll() throws Exception;
+
+    List<Task> findByUserId(String userId) throws Exception;
 }

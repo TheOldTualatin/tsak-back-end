@@ -6,17 +6,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class Task {
-
   private String id;
+  private String userId;
   private String taskName;
-  private long taskTotal;
-  private long receiveNumber;
   private String taskDesc;
   @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private Date releaseTime;
   @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private Date taskDuration;
-  private long taskState;
+  private Long taskState;
 
   public String getId()
   {
@@ -28,6 +26,16 @@ public class Task {
     this.id = id;
   }
 
+  public String getUserId()
+  {
+    return userId;
+  }
+
+  public void setUserId(String userId)
+  {
+    this.userId = userId;
+  }
+
   public String getTaskName()
   {
     return taskName;
@@ -36,26 +44,6 @@ public class Task {
   public void setTaskName(String taskName)
   {
     this.taskName = taskName;
-  }
-
-  public long getTaskTotal()
-  {
-    return taskTotal;
-  }
-
-  public void setTaskTotal(long taskTotal)
-  {
-    this.taskTotal = taskTotal;
-  }
-
-  public long getReceiveNumber()
-  {
-    return receiveNumber;
-  }
-
-  public void setReceiveNumber(long receiveNumber)
-  {
-    this.receiveNumber = receiveNumber;
   }
 
   public String getTaskDesc()
@@ -88,12 +76,12 @@ public class Task {
     this.taskDuration = taskDuration;
   }
 
-  public long getTaskState()
+  public Long getTaskState()
   {
     return taskState;
   }
 
-  public void setTaskState(long taskState)
+  public void setTaskState(Long taskState)
   {
     this.taskState = taskState;
   }

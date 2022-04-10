@@ -28,4 +28,10 @@ public class TaskServiceImpl implements TaskService
     {
         return taskDao.findAll();
     }
+
+    @Override
+    public List<Task> findByUserId(String userId) throws Exception
+    {
+        return taskDao.findByUserId(userId);
+    }
 }

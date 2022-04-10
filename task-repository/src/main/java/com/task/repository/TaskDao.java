@@ -11,9 +11,11 @@ public interface TaskDao
 {
     /**
      * 添加任务
-     * @param task
+     * @param task 任务对象
      */
     void save(Task task) throws Exception;
 
     List<Task> findAll() throws Exception;
+
+    List<Task> findByUserId(String userId) throws Exception;
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.task.repository.TaskDao">
+
+    <insert id="save">
+        insert into
+            task_management_system.task(
+                                        ID,
+                                        TASK_NAME,
+                                        TASK_TOTAL,
+                                        RECEIVE_NUMBER,
+                                        TASK_DESC,
+                                        RELEASE_TIME,
+                                        TASK_DURATION,
+                                        TASK_STATE)
+        values (
+                   #{id},
+                   #{taskName},
+                   #{taskTotal},
+                   #{receiveNumber},
+                   #{taskDesc},
+                   now(),
+                   #{taskDuration},
+                   #{taskState}
+               )
+    </insert>
+</mapper>

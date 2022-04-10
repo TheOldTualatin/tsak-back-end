@@ -3,9 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.task.repository.UserDao">
+<!--  添加用户  -->
     <insert id="save">
         insert into task_management_system.user values (#{id},#{username},#{password},#{phoneNumber},#{address},1);
     </insert>
+<!--  查询所有用户  -->
     <select id="findAll" resultType="com.task.pojo.User">
         select * from task_management_system.user;
     </select>

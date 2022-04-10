@@ -1,0 +1,6 @@
+/out/
+/task-controller/target/
+/task-pojo/target/
+/task-repository/target/
+/task-service/target/
+/task-utils/target/

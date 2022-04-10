@@ -6,6 +6,8 @@ import com.task.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author YangQX   2022/4/10 - 20:23
  */
@@ -19,5 +21,11 @@ public class TaskServiceImpl implements TaskService
     public void save(Task task) throws Exception
     {
         taskDao.save(task);
+    }
+
+    @Override
+    public List<Task> findAll() throws Exception
+    {
+        return taskDao.findAll();
     }
 }

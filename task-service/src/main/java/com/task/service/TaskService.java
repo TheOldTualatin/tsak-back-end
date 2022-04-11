@@ -25,4 +25,6 @@ public interface TaskService
     List<TaskUserReceive> findReceiveTaskStateByTaskId(String taskId) throws Exception;
 
     void changeReceiveTaskStateByUserId(String userId, String taskId) throws Exception;
+
+    List<Task> findTaskByUserIdAndTaskState(String userId, String taskState) throws Exception;
 }

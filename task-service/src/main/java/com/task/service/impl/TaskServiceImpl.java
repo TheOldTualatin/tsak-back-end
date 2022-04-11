@@ -69,4 +69,10 @@ public class TaskServiceImpl implements TaskService
     {
         taskDao.changeReceiveTaskStateByUserId(userId,taskId);
     }
+
+    @Override
+    public List<Task> findTaskByUserIdAndTaskState(String userId, String taskState) throws Exception
+    {
+        return taskDao.findTaskByUserIdAndTaskState(userId,taskState);
+    }
 }

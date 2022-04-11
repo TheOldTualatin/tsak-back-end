@@ -77,6 +77,15 @@
             select * from task_management_system.task_user_receive where task_id = #{taskId}
     </select>
 
+    <select id="findTaskByUserIdAndTaskState"
+            resultType="com.task.pojo.Task">
+        select *
+        from task_management_system.task
+        where id in (select task_id
+                     from task_management_system.task_user_receive
+                     where task.user_id = #{userId} and task.task_state = #{taskState})
+    </select>
+
     <insert id="addReceiveUserById"
             parameterType="list">
         insert into

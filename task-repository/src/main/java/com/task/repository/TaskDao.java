@@ -3,7 +3,6 @@ package com.task.repository;
 import com.task.pojo.Task;
 import com.task.pojo.TaskUserReceive;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -68,4 +67,6 @@ public interface TaskDao
     List<TaskUserReceive> findReceiveTaskStateByTaskId(String taskId) throws Exception;
 
     void changeReceiveTaskStateByUserId(@Param("userId") String userId,@Param("taskId") String taskId) throws Exception;
+
+    List<Task> findTaskByUserIdAndTaskState(@Param("userId") String userId,@Param("taskState") String taskState) throws Exception;
 }

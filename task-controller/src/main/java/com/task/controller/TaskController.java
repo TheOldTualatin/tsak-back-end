@@ -102,4 +102,12 @@ public class TaskController
         taskService.changeReceiveTaskStateByUserId(userId,taskId);
         return "OK";
     }
+
+    @RequestMapping(value = "/findTaskByUserIdAndTaskState",produces = {"text/html;charset=UTF-8;", "application/json;"})
+    @ResponseBody
+    public String findTaskByUserIdAndTaskState(String userId,String taskState) throws Exception
+    {
+        List<Task> tasks = taskService.findTaskByUserIdAndTaskState(userId,taskState);
+        return JsonUtils.getGson().toJson(tasks);
+    }
 }

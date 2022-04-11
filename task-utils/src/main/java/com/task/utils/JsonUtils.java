@@ -15,7 +15,7 @@ public class JsonUtils
     @Bean
     public static Gson getGson()
     {
-        Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+        Gson gson = new Gson();
         return gson;
     }
 }

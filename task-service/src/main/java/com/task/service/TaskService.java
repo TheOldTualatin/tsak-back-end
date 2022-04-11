@@ -1,6 +1,7 @@
 package com.task.service;
 
 import com.task.pojo.Task;
+import com.task.pojo.TaskUserReceive;
 
 import java.util.List;
 
@@ -18,4 +19,8 @@ public interface TaskService
     List<Task> findStateByUserId(Long taskState,String userId) throws Exception;
 
     List<Task> findReceiveTask(String userId) throws Exception;
+
+    List<Task> findReceiveTaskByState(String userId, String state) throws Exception;
+
+    List<TaskUserReceive> findReceiveTaskStateByTaskId(String taskId) throws Exception;
 }

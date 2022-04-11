@@ -48,6 +48,19 @@
         where
             a.id in (select task_id from task_management_system.task_user_receive as b where b.user_id = #{userId})
     </select>
+    <select id="findReceiveTaskByState"
+            resultType="com.task.pojo.Task">
+        select *
+        from
+            task_management_system.task as a
+        where
+                a.id in (select task_id from task_management_system.task_user_receive as b where b.user_id = #{userId} and b.task_state = #{state})
+    </select>
+
+    <select id="findReceiveTaskStateByTaskId"
+            resultType="com.task.pojo.TaskUserReceive">
+            select * from task_management_system.task_user_receive where task_id = #{taskId}
+    </select>
 
     <insert id="addReceiveUserById"
             parameterType="list">

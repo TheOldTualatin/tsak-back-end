@@ -1,6 +1,7 @@
 package com.task.repository;
 
 import com.task.pojo.Task;
+import com.task.pojo.TaskUserReceive;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -48,5 +49,21 @@ public interface TaskDao
      */
     void addReceiveUserById(@Param("taskId") String taskId,@Param("requestUserId") String[] requestUserId) throws Exception;
 
+    /**
+     * 查询所有收到的任务
+     * @param userId
+     * @return
+     * @throws Exception
+     */
     List<Task> findReceiveTask(String userId) throws Exception;
+
+    /**
+     * 根据状态查询收到的任务
+     * @param userId 用户Id
+     * @param state 任务状态
+     * @return 任务列表
+     */
+    List<Task> findReceiveTaskByState(@Param("userId") String userId,@Param("state") String state);
+
+    List<TaskUserReceive> findReceiveTaskStateByTaskId(String taskId) throws Exception;
 }

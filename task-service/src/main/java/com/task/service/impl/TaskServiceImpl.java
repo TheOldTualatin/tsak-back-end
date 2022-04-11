@@ -1,6 +1,7 @@
 package com.task.service.impl;
 
 import com.task.pojo.Task;
+import com.task.pojo.TaskUserReceive;
 import com.task.repository.TaskDao;
 import com.task.service.TaskService;
 import lombok.SneakyThrows;
@@ -49,5 +50,17 @@ public class TaskServiceImpl implements TaskService
     public List<Task> findReceiveTask(String userId) throws Exception
     {
         return taskDao.findReceiveTask(userId);
+    }
+
+    @Override
+    public List<Task> findReceiveTaskByState(String userId, String state) throws Exception
+    {
+        return taskDao.findReceiveTaskByState(userId,state);
+    }
+
+    @Override
+    public List<TaskUserReceive> findReceiveTaskStateByTaskId(String taskId) throws Exception
+    {
+        return taskDao.findReceiveTaskStateByTaskId(taskId);
     }
 }

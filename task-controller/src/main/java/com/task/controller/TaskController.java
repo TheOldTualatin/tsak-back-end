@@ -1,6 +1,7 @@
 package com.task.controller;
 
 import com.task.pojo.Task;
+import com.task.pojo.TaskUserReceive;
 import com.task.service.TaskService;
 import com.task.utils.IdUtils;
 import com.task.utils.JsonUtils;
@@ -75,6 +76,22 @@ public class TaskController
     public String findReceiveTask(String userId) throws Exception
     {
         List<Task> tasks = taskService.findReceiveTask(userId);
+        return JsonUtils.getGson().toJson(tasks);
+    }
+
+    @RequestMapping(value = "/findReceiveTaskByState",produces = {"text/html;charset=UTF-8;", "application/json;"})
+    @ResponseBody
+    public String findReceiveTaskByState(String userId,String state) throws Exception
+    {
+        List<Task> tasks = taskService.findReceiveTaskByState(userId,state);
+        return JsonUtils.getGson().toJson(tasks);
+    }
+
+    @RequestMapping(value = "/FindReceiveTaskStateByTaskId",produces = {"text/html;charset=UTF-8;", "application/json;"})
+    @ResponseBody
+    public String FindReceiveTaskStateByTaskId(String taskId) throws Exception
+    {
+        List<TaskUserReceive> tasks = taskService.findReceiveTaskStateByTaskId(taskId);
         return JsonUtils.getGson().toJson(tasks);
     }
 }

@@ -20,6 +20,21 @@
                 #{taskDuration},
                 0)
     </insert>
+    <update id="changeReceiveTaskStateByUserId">
+        update
+            task_management_system.task_user_receive
+        set task_state =
+                    (
+                        select a.task_state
+                        from (select task_state
+                              from task_user_receive
+                              where task_id = #{taskId}
+                                and user_id = #{userId}
+                             ) as a
+                    ) + 1
+        where task_id = #{taskId}
+          and user_id = #{userId}
+    </update>
     <select id="findAll"
             resultType="com.task.pojo.Task">
         select *

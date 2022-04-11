@@ -87,11 +87,19 @@ public class TaskController
         return JsonUtils.getGson().toJson(tasks);
     }
 
-    @RequestMapping(value = "/FindReceiveTaskStateByTaskId",produces = {"text/html;charset=UTF-8;", "application/json;"})
+    @RequestMapping(value = "/findReceiveTaskStateByTaskId",produces = {"text/html;charset=UTF-8;", "application/json;"})
     @ResponseBody
     public String FindReceiveTaskStateByTaskId(String taskId) throws Exception
     {
         List<TaskUserReceive> tasks = taskService.findReceiveTaskStateByTaskId(taskId);
         return JsonUtils.getGson().toJson(tasks);
+    }
+
+    @RequestMapping(value = "/changeReceiveTaskStateByUserIdAndTaskId",produces = {"text/html;charset=UTF-8;", "application/json;"})
+    @ResponseBody
+    public String changeReceiveTaskStateByUserId(String userId,String taskId) throws Exception
+    {
+        taskService.changeReceiveTaskStateByUserId(userId,taskId);
+        return "OK";
     }
 }

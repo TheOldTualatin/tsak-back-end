@@ -66,4 +66,6 @@ public interface TaskDao
     List<Task> findReceiveTaskByState(@Param("userId") String userId,@Param("state") String state);
 
     List<TaskUserReceive> findReceiveTaskStateByTaskId(String taskId) throws Exception;
+
+    void changeReceiveTaskStateByUserId(@Param("userId") String userId,@Param("taskId") String taskId) throws Exception;
 }

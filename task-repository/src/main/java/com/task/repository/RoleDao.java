@@ -11,7 +11,16 @@ import org.springframework.stereotype.Repository;
 public interface RoleDao
 {
 
+    /**
+     * 对用户添加角色
+     * @param userId 用户ID
+     * @param roleId 角色ID
+     */
     void addRole2User(@Param("userId") String userId,@Param("roleId") String roleId);
 
+    /**
+     * 添加角色
+     * @param role 角色信息
+     */
     void save(Role role);
 }

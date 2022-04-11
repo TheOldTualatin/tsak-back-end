@@ -4,10 +4,12 @@ import com.google.gson.Gson;
 import com.task.pojo.User;
 import com.task.service.UserService;
 import com.task.utils.IdUtils;
+import com.task.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -29,6 +31,7 @@ public class UserController
 
     /**
      * 保存用户
+     *
      * @param user 用户信息
      * @return 返回状态
      * @throws Exception
@@ -44,6 +47,7 @@ public class UserController
 
     /**
      * 查询所有用户
+     *
      * @return 返回角色列表
      * @throws Exception
      */
@@ -54,4 +58,13 @@ public class UserController
         List<User> users = userService.findAll();
         return gson.toJson(users);
     }
+
+    @RequestMapping("/findUserByusernameAndPassword")
+    @ResponseBody
+    public String findUserByusernameAndPassword(@RequestParam("username") String username,@RequestParam("password") String password)
+    {
+        User user = userService.findUserByUsernameAndPassword(username, password);
+        return JsonUtils.getGson().toJson(user);
+    }
+
 }

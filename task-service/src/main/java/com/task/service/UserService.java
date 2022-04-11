@@ -12,4 +12,6 @@ public interface UserService
     void save(User user) throws Exception;
 
     List<User> findAll() throws Exception;
+
+    User findUserByUsernameAndPassword(String username, String password);
 }

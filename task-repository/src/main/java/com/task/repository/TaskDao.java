@@ -47,4 +47,6 @@ public interface TaskDao
      * @throws Exception
      */
     void addReceiveUserById(@Param("taskId") String taskId,@Param("requestUserId") String[] requestUserId) throws Exception;
+
+    List<Task> findReceiveTask(String userId) throws Exception;
 }

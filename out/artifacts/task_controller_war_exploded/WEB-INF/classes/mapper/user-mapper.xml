@@ -11,4 +11,8 @@
     <select id="findAll" resultType="com.task.pojo.User">
         select * from task_management_system.user;
     </select>
+    <select id="findUserByUsernameAndPassword"
+            resultType="com.task.pojo.User">
+        select * from task_management_system.user where username = #{username} and password = #{password};
+    </select>
 </mapper>

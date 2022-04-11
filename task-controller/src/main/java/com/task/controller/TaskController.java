@@ -56,7 +56,7 @@ public class TaskController
     }
 
     /**
-     * 更具状态查询任务
+     * 根据状态查询我发布的任务
      */
     @RequestMapping(value = "/findStateByUserId",produces = {"text/html;charset=UTF-8;", "application/json;"})
     @ResponseBody
@@ -66,4 +66,15 @@ public class TaskController
         return JsonUtils.getGson().toJson(tasks);
     }
 
+    /**
+     * 查询我收到的所有任务
+     * @return 任务列表
+     */
+    @RequestMapping(value = "/findReceiveTask",produces = {"text/html;charset=UTF-8;", "application/json;"})
+    @ResponseBody
+    public String findReceiveTask(String userId) throws Exception
+    {
+        List<Task> tasks = taskService.findReceiveTask(userId);
+        return JsonUtils.getGson().toJson(tasks);
+    }
 }

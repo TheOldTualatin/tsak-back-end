@@ -40,6 +40,14 @@
         where a.user_id = #{userId}
           and a.task_id = #{taskId}
     </select>
+    <select id="findReceiveTask"
+            resultType="com.task.pojo.Task">
+        select *
+        from
+             task_management_system.task as a
+        where
+            a.id in (select task_id from task_management_system.task_user_receive as b where b.user_id = #{userId})
+    </select>
 
     <insert id="addReceiveUserById"
             parameterType="list">

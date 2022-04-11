@@ -16,4 +16,6 @@ public interface TaskService
     List<Task> findByUserId(String userId) throws Exception;
 
     List<Task> findStateByUserId(Long taskState,String userId) throws Exception;
+
+    List<Task> findReceiveTask(String userId) throws Exception;
 }

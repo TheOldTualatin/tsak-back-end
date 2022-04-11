@@ -5,31 +5,52 @@
 <mapper namespace="com.task.repository.TaskDao">
 
     <insert id="save">
-        insert into
-            task_management_system.task(
-                                        ID,
-                                        USER_ID,
-                                        TASK_NAME,
-                                        TASK_DESC,
-                                        RELEASE_TIME,
-                                        TASK_DURATION,
-                                        TASK_STATE)
-        values (
-                   #{id},
-                   #{userId},
-                   #{taskName},
-                   #{taskDesc},
-                   now(),
-                   #{taskDuration},
-                   0
-               )
+        insert into task_management_system.task(ID,
+                                                USER_ID,
+                                                TASK_NAME,
+                                                TASK_DESC,
+                                                RELEASE_TIME,
+                                                TASK_DURATION,
+                                                TASK_STATE)
+        values (#{id},
+                #{userId},
+                #{taskName},
+                #{taskDesc},
+                now(),
+                #{taskDuration},
+                0)
     </insert>
     <select id="findAll"
             resultType="com.task.pojo.Task">
-        select * from task_management_system.task
+        select *
+        from task_management_system.task
     </select>
+
     <select id="findByUserId"
             resultType="com.task.pojo.Task">
-        select * from task_management_system.task where user_id = #{userId}
+        select *
+        from task_management_system.task
+        where user_id = #{userId}
     </select>
+
+    <select id="findStateByUserId"
+            resultType="com.task.pojo.Task">
+        select *
+        from task_management_system.task_user_receive as a
+        where a.user_id = #{userId}
+          and a.task_id = #{taskId}
+    </select>
+
+    <insert id="addReceiveUserById"
+            parameterType="list">
+        insert into
+        task_management_system.task_user_receive(task_id, user_id, task_state)
+        VALUES
+        <foreach collection="requestUserId"
+                 item="item"
+                 index="index"
+                 separator=",">
+            (#{taskId},#{item},0)
+        </foreach>
+    </insert>
 </mapper>

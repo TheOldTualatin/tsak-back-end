@@ -6,11 +6,11 @@ import com.task.utils.IdUtils;
 import com.task.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.List;
 
 /**
@@ -19,7 +19,6 @@ import java.util.List;
 @CrossOrigin
 @Controller
 @RequestMapping("/task")
-@Transactional
 public class TaskController
 {
     @Autowired
@@ -27,10 +26,10 @@ public class TaskController
 
     @RequestMapping("/save")
     @ResponseBody
-    public String save(Task task) throws Exception
+    public String save(Task task,@RequestParam("requestUserId") String[] requestUserId) throws Exception
     {
         task.setId(IdUtils.getId());
-        taskService.save(task);
+        taskService.save(task,requestUserId);
         return "OK";
     }
 
@@ -42,14 +41,29 @@ public class TaskController
         return JsonUtils.getGson().toJson(tasks);
     }
 
+    /**
+     * 根据用户ID查询我发布的任务
+     * @param userId 用户ID
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/findByUserId",produces = {"text/html;charset=UTF-8;", "application/json;"})
     @ResponseBody
     public String findByUserId(@RequestParam("userId") String userId) throws Exception
     {
         List<Task> tasks = taskService.findByUserId(userId);
-        String s = JsonUtils.getGson().toJson(tasks);
-        System.out.println(s);
-        return s;
+        return JsonUtils.getGson().toJson(tasks);
+    }
+
+    /**
+     * 更具状态查询任务
+     */
+    @RequestMapping(value = "/findStateByUserId",produces = {"text/html;charset=UTF-8;", "application/json;"})
+    @ResponseBody
+    public String findStateByUserId(@RequestParam("taskState") Long taskState,@RequestParam("userId") String userId) throws Exception
+    {
+        List<Task> tasks = taskService.findStateByUserId(taskState,userId);
+        return JsonUtils.getGson().toJson(tasks);
     }
 
 }

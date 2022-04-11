@@ -1,6 +1,8 @@
 package com.task.repository;
 
 import com.task.pojo.Task;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -18,4 +20,8 @@ public interface TaskDao
     List<Task> findAll() throws Exception;
 
     List<Task> findByUserId(String userId) throws Exception;
+
+    List<Task> findStateByUserId(@Param("taskState") Long taskState,@Param("userId") String userId);
+
+    void addReceiveUserById(@Param("taskId") String taskId,@Param("requestUserId") String[] requestUserId) throws Exception;
 }

@@ -9,9 +9,11 @@ import java.util.List;
  */
 public interface TaskService
 {
-    void save(Task task) throws Exception;
+    void save(Task task,String[] requestUserId) throws Exception;
 
     List<Task> findAll() throws Exception;
 
     List<Task> findByUserId(String userId) throws Exception;
+
+    List<Task> findStateByUserId(Long taskState,String userId) throws Exception;
 }

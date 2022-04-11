@@ -3,8 +3,10 @@ package com.task.service.impl;
 import com.task.pojo.Task;
 import com.task.repository.TaskDao;
 import com.task.service.TaskService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,9 +20,11 @@ public class TaskServiceImpl implements TaskService
     TaskDao taskDao;
 
     @Override
-    public void save(Task task) throws Exception
+    @Transactional(rollbackFor = RuntimeException.class)
+    public void save(Task task, String[] requestUserId) throws Exception
     {
         taskDao.save(task);
+        taskDao.addReceiveUserById(task.getId(), requestUserId);
     }
 
     @Override
@@ -33,5 +37,11 @@ public class TaskServiceImpl implements TaskService
     public List<Task> findByUserId(String userId) throws Exception
     {
         return taskDao.findByUserId(userId);
+    }
+
+    @Override
+    public List<Task> findStateByUserId(Long taskState, String userId) throws Exception
+    {
+        return taskDao.findStateByUserId(taskState, userId);
     }
 }

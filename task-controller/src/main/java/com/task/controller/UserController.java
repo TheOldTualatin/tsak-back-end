@@ -7,10 +7,7 @@ import com.task.utils.IdUtils;
 import com.task.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,9 +33,9 @@ public class UserController
      * @return 返回状态
      * @throws Exception
      */
-    @RequestMapping("/save")
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
     @ResponseBody
-    public String save(User user) throws Exception
+    public String save( User user) throws Exception
     {
         user.setId(IdUtils.getId());
         userService.save(user);
@@ -59,9 +56,9 @@ public class UserController
         return gson.toJson(users);
     }
 
-    @RequestMapping("/findUserByusernameAndPassword")
+    @RequestMapping(value = "/findUserByUsernameAndPassword",method = RequestMethod.POST)
     @ResponseBody
-    public String findUserByusernameAndPassword(@RequestParam("username") String username,@RequestParam("password") String password)
+    public String findUserByUsernameAndPassword(@RequestParam("username") String username,@RequestParam("password") String password)
     {
         User user = userService.findUserByUsernameAndPassword(username, password);
         return JsonUtils.getGson().toJson(user);
